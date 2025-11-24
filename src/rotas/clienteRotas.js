@@ -3,7 +3,9 @@ import ClienteController from "../controllers/clienteController.js";
 
 const rotas = express.Router();
 
-rotas.get("/departamentos", ClienteController.listarDepartamento);
+rotas.post("/cliente", ClienteController.cadastroCliente);
+rotas.get("/cliente", ClienteController.listarClientes);
+rotas.get("/cliente/:id", ClienteController.localizarClienteId);
 
 
 export default rotas;
