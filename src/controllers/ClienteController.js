@@ -4,21 +4,24 @@ class ClienteController{
     static cadastroCliente = async (req, res) => {
         try{
         const client = await connectDataBase();
-        const conteudo = req.query;
-
-        const idCliente = await client.query("SELECT COUNT(idcliente) FROM cliente;");
-        const cpf = conteudo.cpf;
-        const nome = conteudo.nome;
-        const senha = conteudo.senha;
-        const dataNascimento = conteudo.datanascimento;
-        const email = conteudo.email;
-        const numeroCelular = conteudo.numerocelular;
-        const dataCadastro = await client.query("SELECT NOW()");
-        const jsonIdEndereco = conteudo.endereco;
-        const jsonIdCartao = conteudo.cartao;
+        const conteudo = req.body;
         
-        const clienteCadastrado = await client.query(`INSERT INTO Cliente VALUES (${idCliente}, ${cpf}), ${nome}), ${senha}), ${dataNascimento}),
-            ${email}), ${numeroCelular}), ${dataCadastro}, ${idEndereco}, ${idCartao}))` );
+        const idCliente = await client.query("SELECT COUNT(idcliente) FROM cliente;");
+        idCliente += 1;
+        const dataCadastro = await client.query("SELECT NOW()");
+        const idEndereco = await encontrarEndereco(conteudo.endereco);
+        if(!idEndereco){
+            idEndereco = await novoEndereco(conteudo.endereco);
+        }
+
+        const sql = `INSERT INTO Cliente VALUES 
+                    (${idCliente}, ${conteudo.cpf}, 
+                    ${conteudo.nome}), ${conteudo.senha}), ${conteudo.dataNascimento}),
+                    ${conteudo.email}), ${conteudo.numeroCelular}), ${dataCadastro}, 
+                    ${idEndereco}, NULL)` 
+        //const jsonIdCartao = conteudo.cartao;
+        
+        const clienteCadastrado = await client.query(sql);
         //INSERT INTO Cliente VALUES 
         //(1, '111.111.111-11', 'João', '123', '2000-01-01', 'joao@email.com', '27999990001', '2025-01-01', NULL, 1)
         res.status(200).send("Cliente cadastrado com sucesso");
@@ -68,10 +71,39 @@ class ClienteController{
         }
 
     }
-    static async function(endereco){
+    static novoEndereco = async (endereco) => {
 
-        
+        try{
+            const client = await connectDataBase();
+            const idEndereco = await client.query("SELECT COUNT(idendereco) FROM endereco;");
+            await client.query(`INSERT INTO endereco VALUES 
+                (${idEndereco + 1}, ${endereco.estado}, ${endereco.numero}), ${endereco.rua},
+                ${endereco.cidade}, ${endereco.complemento}, NULL, NULL`);
+    
+            return idEndereco;
 
+        }catch(erro){
+            throw erro;
+        }
+
+    }
+    static encontrarEndereco = async (endereco) => {
+
+        try{
+
+            const client = await connectDataBase();
+            const sql = `SELECT idendereco
+                        FROM endereco
+                        WHERE estado = '${endereco.estado}' AND numero = ${endereco.numero} AND rua = '${endereco.rua}' 
+                        AND cidade = '${endereco.cidade}' AND complemento = '${endereco.complemento}'`;
+            
+            
+            const enderecoEncontrado = await client.query(sql);
+            
+            return enderecoEncontrado;
+        }catch(erro){
+            throw erro;
+        }
     } 
 }
 export default ClienteController;
