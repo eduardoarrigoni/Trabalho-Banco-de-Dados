@@ -3,7 +3,7 @@ import ClienteController from "../controllers/clienteController.js";
 
 const rotas = express.Router();
 
-rotas.post("/cliente", ClienteController.cadastroCliente);
+rotas.post("/cadastro", ClienteController.cadastroCliente);
 rotas.get("/cliente", ClienteController.listarClientes);
 rotas.get("/cliente/:id", ClienteController.localizarClienteId);
 

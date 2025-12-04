@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login/Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="login-username" placeholder="Usuário ou Email" required>
+            <input type="password" id="login-password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <hr>
+        <h2>Cadastro</h2>
+        <form id="registerForm">
+            <input type="text" id="register-nome" placeholder="Nome completo" required>
+            <input type="text" id="register-cpf" placeholder="CPF" required maxlength="14">
+            <input type="password" id="register-password" placeholder="Senha" required>
+            <input type="date" id="register-nascimento" placeholder="Data de nascimento" required>
+            <input type="email" id="register-email" placeholder="E-mail" required>
+            <input type="text" id="register-celular" placeholder="Celular" required maxlength="15">
+            <input type="text" id="register-estado" placeholder="Estado" required>
+            <input type="text" id="register-cidade" placeholder="Cidade" required>
+            <input type="text" id="register-rua" placeholder="Rua" required>
+            <input type="text" id="register-numero" placeholder="Número" required>
+            <input type="text" id="register-complemento" placeholder="Complemento" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

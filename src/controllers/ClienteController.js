@@ -5,13 +5,16 @@ class ClienteController{
         try{
         const client = await connectDataBase();
         const conteudo = req.body;
-        
+        console.log(conteudo);
         const idCliente = await client.query("SELECT COUNT(idcliente) FROM cliente;");
         idCliente += 1;
+        console.log(idCliente);
         const dataCadastro = await client.query("SELECT NOW()");
         const idEndereco = await encontrarEndereco(conteudo.endereco);
+        console.log(idEndereco);
         if(!idEndereco){
             idEndereco = await novoEndereco(conteudo.endereco);
+            console.log(idEndereco);
         }
 
         const sql = `INSERT INTO Cliente VALUES 
@@ -24,10 +27,10 @@ class ClienteController{
         const clienteCadastrado = await client.query(sql);
         //INSERT INTO Cliente VALUES 
         //(1, '111.111.111-11', 'João', '123', '2000-01-01', 'joao@email.com', '27999990001', '2025-01-01', NULL, 1)
-        res.status(200).send("Cliente cadastrado com sucesso");
+        res.status(200).json({message: "Cliente cadastrado com sucesso"});
         }catch(erro){
 
-            throw erro;
+            res.status(400).json({ message: "Erro ao cadastrar" });
         }
     }
     static localizarClienteId = async (req, res) => {
@@ -80,7 +83,7 @@ class ClienteController{
                 (${idEndereco + 1}, ${endereco.estado}, ${endereco.numero}), ${endereco.rua},
                 ${endereco.cidade}, ${endereco.complemento}, NULL, NULL`);
     
-            return idEndereco;
+            return idEndereco + 1;
 
         }catch(erro){
             throw erro;
