@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Venda - Loja Autônoma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div id="login-container" class="card">
+        <h2>Login do Cliente</h2>
+
+        <input id="cpf" type="text" placeholder="CPF">
+        <input id="senha" type="password" placeholder="Senha">
+
+        <button onclick="login()">Entrar</button>
+    </div>
+
+    <!-- TELA DE VENDA -->
+    <div id="venda-container" class="hidden">
+
+        <h2 class="title">Selecione seus produtos</h2>
+
+        <div id="produtos-list" class="produtos-grid"></div>
+
+        <div class="total-box">
+            <h3>Total: R$ <span id="total">0.00</span></h3>
+            <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
