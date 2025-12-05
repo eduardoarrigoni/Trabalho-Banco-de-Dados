@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <title>Tela de Vendas</title>
+    <link rel="stylesheet" href="venda.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PDV - Ponto de Venda</h1>
+
+        <!-- Área de login -->
+        <section id="login-section">
+            <h2>Login</h2>
+            <form id="saleLoginForm">
+                <input type="text" id="sale-username" placeholder="Usuário ou email" required>
+                <input type="password" id="sale-password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <p id="login-message" class="message"></p>
+        </section>
+
+        <!-- Área de produtos (escondida até validar) -->
+        <section id="sales-section" class="hidden">
+            <div class="topbar">
+                <div id="user-info"></div>
+                <button id="logout-btn">Sair</button>
+            </div>
+
+            <h2>Produtos</h2>
+            <div id="products" class="products-grid">
+                <!-- Produtos serão renderizados aqui -->
+            </div>
+
+            <aside class="cart">
+                <h3>Carrinho</h3>
+                <ul id="cart-items">
+                    <!-- Itens adicionados -->
+                </ul>
+                <div class="cart-total">
+                    Total: <strong id="total-value">R$ 0,00</strong>
+                </div>
+                <button id="finalize-btn" disabled>Finalizar Venda</button>
+                <p id="sale-message" class="message"></p>
+            </aside>
+        </section>
+    </div>
+
+    <script src="venda.js"></script>
+</body>
+</html>

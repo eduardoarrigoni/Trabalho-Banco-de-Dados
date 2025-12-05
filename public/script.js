@@ -1,13 +1,13 @@
 document.getElementById("loginForm").onsubmit = async function(e) {
     e.preventDefault();
 
-    const username = document.getElementById("login-username").value;
+    const email = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
 
     const res = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email: email, password })
     });
 
     const data = await res.json();
@@ -17,6 +17,7 @@ document.getElementById("loginForm").onsubmit = async function(e) {
         msg.style.color = "green";
         msg.textContent = "Login realizado com sucesso!";
         // Redirecionar ou armazenar token conforme aplicacao
+        window.location.href = "venda.html";
     } else {
         msg.style.color = "#d60000";
         msg.textContent = data.message || "Erro no login.";
