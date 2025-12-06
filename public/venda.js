@@ -37,12 +37,12 @@ loginForm.addEventListener('submit', async (e) => {
     loginMessage.textContent = '';
     const email = qs('#sale-username').value.trim();
     const password = qs('#sale-password').value;
-
+    const loginVenda = 1;
     try {
         const res = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password, loginVenda })
         });
 
         const data = await res.json();
@@ -226,6 +226,7 @@ finalizeBtn.addEventListener('click', async () => {
         // limpa carrinho
         cart.clear();
         updateCartUI();
+        window.location.href = "venda.html";
     } catch (err) {
         console.error('Erro ao finalizar venda:', err);
         saleMessage.textContent = 'Erro de conexão ao finalizar venda.';

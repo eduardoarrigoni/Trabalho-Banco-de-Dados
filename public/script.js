@@ -16,7 +16,7 @@ document.getElementById("loginForm").onsubmit = async function(e) {
     if (res.ok) {
         msg.style.color = "green";
         msg.textContent = "Login realizado com sucesso!";
-        // Redirecionar ou armazenar token conforme aplicacao
+        // Redirecionar
         window.location.href = "venda.html";
     } else {
         msg.style.color = "#d60000";

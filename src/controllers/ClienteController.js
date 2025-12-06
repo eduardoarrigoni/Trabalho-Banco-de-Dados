@@ -75,12 +75,12 @@ class ClienteController{
             
             
             if(idCliente.rows[0].idcliente > 0){
-
+                if(acesso.loginVenda != 1) await client.query(`INSERT INTO acesso VALUES (DEFAULT, NOW(), ${idCliente.rows[0].idcliente})`);
                 res.status(200).json({message: "login realizado com sucesso",
                     idCliente: idCliente.rows[0].idcliente
                 });
             }else{
-                res.status(400).json({ message: "Erro ao cadastrar" });
+                res.status(400).json({ message: "Cliente não encontrado, favor fazer o cadastro primeiro" });
             }
         }catch(erro){   
             res.status(400).json({ message: "Erro ao cadastrar" });
