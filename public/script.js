@@ -3,22 +3,39 @@ document.getElementById("loginForm").onsubmit = async function(e) {
 
     const email = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
+    const checkbox = document.getElementById('adm');
 
-    const res = await fetch("http://localhost:3000/login", {
+    const isAdmLogin = checkbox ? checkbox.checked : false;
+    if(isAdmLogin){
+        const res = await fetch("http://localhost:3000/login/adm", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ email: email, password })
-    });
+        });
 
-    const data = await res.json();
-    const msg = document.getElementById("message");
+        const data = await res.json();
+        const msg = document.getElementById("message");
 
-    if (res.ok && data.idAdministrador > 0) {
+        if (res.ok) {
         msg.style.color = "green";
-        msg.textContent = "Bem Vindo, minha lenda";
+        msg.textContent = "Bem vindo, minha linda!";
         // Redirecionar
         window.location.href = "paineladm.html";
+        } else {
+            msg.style.color = "#d60000";
+            msg.textContent = data.message || "Erro no login.";
+        }
     }else{
+        const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ email: email, password })
+        });
+
+        const data = await res.json();
+        const msg = document.getElementById("message");
+
+        
         if (res.ok) {
             msg.style.color = "green";
             msg.textContent = "Login realizado com sucesso!";
@@ -27,8 +44,9 @@ document.getElementById("loginForm").onsubmit = async function(e) {
         } else {
             msg.style.color = "#d60000";
             msg.textContent = data.message || "Erro no login.";
-        }
+        }    
     }
+    
 
 };
 

@@ -69,15 +69,7 @@ class ClienteController{
             const client = await connectDataBase();
             const acesso = req.body;
             console.log(acesso);
-            const idAdministrador = await client.query(`SELECT idadministrador
-                                                        FROM administrador
-                                                        WHERE cpf = '${acesso.email}' AND senha = '${acesso.password}'`);
-            
-            if(idAdministrador.rows[0].idadministrador > 0){
-                res.status(200).json({message: "Bem vindo, Administrador",
-                    idAdministrador: idAdministrador.rows[0].idadministrador
-                });
-            }                                        
+        
             const idCliente = await client.query(`SELECT idCliente
                                                 FROM cliente
                                                 WHERE email = '${acesso.email}' AND senha = '${acesso.password}'`);
@@ -91,8 +83,9 @@ class ClienteController{
             }else{
                 res.status(400).json({ message: "Cliente não encontrado, favor fazer o cadastro primeiro" });
             }
+                                                
         }catch(erro){   
-            res.status(400).json({ message: "Erro ao cadastrar" });
+            res.status(400).json({ message: "Erro no login" });
         }
 
     }
@@ -142,6 +135,27 @@ class ClienteController{
             return 0;
         }catch(erro){
             throw erro;
+        }
+
+    }
+    static loginAdm = async (req, res) => {
+
+        try{
+            const client = await connectDataBase();
+            const acesso = req.body;
+            
+            const idAdministrador = await client.query(`SELECT idadministrador
+                                                        FROM administrador
+                                                        WHERE cpf = '${acesso.email}' AND senha = '${acesso.password}'`);
+            
+            if(idAdministrador.rows[0].idadministrador > 0){
+                res.status(200).json({message: "Bem vindo, Administrador",
+                    idAdministrador: idAdministrador.rows[0].idadministrador
+                });
+            }
+        }catch(erro){
+
+            res.status(400).json({ message: "Erro no login, adm" });
         }
 
     }

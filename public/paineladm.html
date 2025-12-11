@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <div class="topbar">
-            <h1>Consultas GET ao Banco</h1>
+            <h1>Consultas ao Banco</h1>
             <button id="logout-btn">Sair</button>
         </div>
 
@@ -19,16 +19,13 @@
                 
                 <div class="product-card" id="card-acessos">
                     <h4>Consulta 1: Histórico de acessos</h4>
-                    <p class="product-meta">Endpoint: <code>/clientes/acessos</code> (GET)</p>
                     <div class="product-actions">
                         <button id="btn-acao-1">Buscar Histórico</button>
                     </div>
                 </div>
 
                 <div class="product-card" id="card-estoque">
-                    <h4>Consulta 2: Produtos com quantidade baixa no estoque</h4>
-                    <p class="product-meta">Endpoint: <code>/produtos/estoque-baixo</code> (GET)</p>
-                    <input type="number" id="input-acao-2" class="qty-input" placeholder="Limite (Ex: 10)" value="10">
+                    <h4>Consulta 2: Produtos com quantidade baixa no estoque</h4>    
                     <div class="product-actions">
                         <button id="btn-acao-2">Listar Produtos</button>
                     </div>
@@ -36,8 +33,6 @@
 
                 <div class="product-card" id="card-vendas-total">
                     <h4>Consulta 3: Total de Vendas por cliente</h4>
-                    <p class="product-meta">Endpoint: <code>/clientes/:id/vendas/total</code> (GET)</p>
-                    <input type="number" id="input-acao-3" class="qty-input" placeholder="ID do Cliente" required>
                     <div class="product-actions">
                         <button id="btn-acao-3">Calcular Total</button>
                     </div>
@@ -46,7 +41,9 @@
             
             <div class="cart">
                 <h3>Resultado da API:</h3>
-                <pre id="api-result"></pre>
+                <div id="api-result-container">
+                    <p id="api-result-placeholder">Nenhum dado consultado ainda.</p>
+                </div>
                 <p id="api-message" class="message"></p>
             </div>
         </div>

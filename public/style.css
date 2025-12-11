@@ -36,3 +36,26 @@ hr {
     margin-top: 15px;
     color: #d60000;
 }
+.checkbox-container {
+    /* Define o container para ocupar a mesma largura dos inputs */
+    width: 100%; 
+    padding: 8px 0; /* Espaçamento similar aos inputs */
+    display: flex; /* Habilita o Flexbox para alinhar itens */
+    align-items: center; /* Centraliza verticalmente a checkbox e o texto */
+    margin-bottom: 5px; /* Pequeno espaçamento abaixo */
+}
+
+.checkbox-container input[type="checkbox"] {
+    /* Remove a largura de 100% para a checkbox */
+    width: auto; 
+    /* Garante que o tamanho da caixa seja normal e o espaçamento mínimo */
+    margin: 0; 
+    margin-right: 8px; /* Espaço entre a caixa e o texto */
+}
+
+.checkbox-label {
+    /* Garante que o texto fique alinhado ao lado */
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer;
+}
