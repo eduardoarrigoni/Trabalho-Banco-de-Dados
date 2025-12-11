@@ -69,6 +69,15 @@ class ClienteController{
             const client = await connectDataBase();
             const acesso = req.body;
             console.log(acesso);
+            const idAdministrador = await client.query(`SELECT idadministrador
+                                                        FROM administrador
+                                                        WHERE cpf = '${acesso.email}' AND senha = '${acesso.password}'`);
+            
+            if(idAdministrador.rows[0].idadministrador > 0){
+                res.status(200).json({message: "Bem vindo, Administrador",
+                    idAdministrador: idAdministrador.rows[0].idadministrador
+                });
+            }                                        
             const idCliente = await client.query(`SELECT idCliente
                                                 FROM cliente
                                                 WHERE email = '${acesso.email}' AND senha = '${acesso.password}'`);

@@ -13,15 +13,23 @@ document.getElementById("loginForm").onsubmit = async function(e) {
     const data = await res.json();
     const msg = document.getElementById("message");
 
-    if (res.ok) {
+    if (res.ok && data.idAdministrador > 0) {
         msg.style.color = "green";
-        msg.textContent = "Login realizado com sucesso!";
+        msg.textContent = "Bem Vindo, minha lenda";
         // Redirecionar
-        window.location.href = "venda.html";
-    } else {
-        msg.style.color = "#d60000";
-        msg.textContent = data.message || "Erro no login.";
+        window.location.href = "paineladm.html";
+    }else{
+        if (res.ok) {
+            msg.style.color = "green";
+            msg.textContent = "Login realizado com sucesso!";
+            // Redirecionar
+            window.location.href = "venda.html";
+        } else {
+            msg.style.color = "#d60000";
+            msg.textContent = data.message || "Erro no login.";
+        }
     }
+
 };
 
 document.getElementById("registerForm").onsubmit = async function(e) {

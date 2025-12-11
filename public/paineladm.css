@@ -1,0 +1,154 @@
+/* Cores baseadas em style.css */
+:root {
+    --primary-blue: #007BFF;
+    --primary-blue-hover: #0056b3;
+    --background: #f8f8f8;
+    --card-background: #fff;
+    --text-color: #333;
+    --danger-color: #d60000;
+    --success-color: green;
+    --border-color: #ccc;
+}
+
+/* Base e Container (Mantendo o estilo do index.html) */
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text-color);
+    margin: 0;
+}
+.container {
+    background: var(--card-background);
+    padding: 30px 40px;
+    margin: 50px auto; /* Ajuste para não ficar muito alto */
+    max-width: 900px; /* Mais largo para o conteúdo da nova tela */
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+h1 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-top: 0;
+}
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+}
+.message.error {
+    color: var(--danger-color);
+    background: rgba(214, 0, 0, 0.1);
+    border: 1px solid var(--danger-color);
+}
+.message.success {
+    color: var(--success-color);
+    background: rgba(0, 128, 0, 0.1);
+    border: 1px solid var(--success-color);
+}
+
+
+/* Estilos para a Tela de Ações (sales-section) */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#logout-btn {
+    width: auto;
+    background: #f0f0f0;
+    color: var(--text-color);
+    padding: 8px 15px;
+}
+#logout-btn:hover {
+    background: #e0e0e0;
+}
+
+/* Grid de Botões/Ações */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.product-card {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-card h4 {
+    margin: 0;
+    color: var(--primary-blue);
+}
+
+.product-meta {
+    font-size: 0.85em;
+    color: #666;
+    background: #f9f9f9;
+    padding: 5px;
+    border-radius: 4px;
+}
+.product-meta code {
+    font-weight: bold;
+}
+
+.product-actions {
+    margin-top: auto;
+}
+
+/* Estilo dos Inputs */
+.qty-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Estilo do Botão Principal (igual ao index.html) */
+.product-actions button {
+    width: 100%;
+    padding: 10px 0;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.product-actions button:hover {
+    background: var(--primary-blue-hover);
+}
+
+/* Área de Resultado da API */
+.cart {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+.cart h3 {
+    margin-top: 0;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+}
+#api-result {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.8em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

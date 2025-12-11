@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Consultas à API de Negócios</title>
+    <link rel="stylesheet" href="paineladm.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <h1>Consultas GET ao Banco</h1>
+            <button id="logout-btn">Sair</button>
+        </div>
+
+        <div id="sales-section">
+            <p>Selecione a consulta, insira o parâmetro necessário (se houver) e clique no botão para executar a requisição.</p>
+            
+            <div class="products-grid">
+                
+                <div class="product-card" id="card-acessos">
+                    <h4>Consulta 1: Histórico de acessos</h4>
+                    <p class="product-meta">Endpoint: <code>/clientes/acessos</code> (GET)</p>
+                    <div class="product-actions">
+                        <button id="btn-acao-1">Buscar Histórico</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="card-estoque">
+                    <h4>Consulta 2: Produtos com quantidade baixa no estoque</h4>
+                    <p class="product-meta">Endpoint: <code>/produtos/estoque-baixo</code> (GET)</p>
+                    <input type="number" id="input-acao-2" class="qty-input" placeholder="Limite (Ex: 10)" value="10">
+                    <div class="product-actions">
+                        <button id="btn-acao-2">Listar Produtos</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="card-vendas-total">
+                    <h4>Consulta 3: Total de Vendas por cliente</h4>
+                    <p class="product-meta">Endpoint: <code>/clientes/:id/vendas/total</code> (GET)</p>
+                    <input type="number" id="input-acao-3" class="qty-input" placeholder="ID do Cliente" required>
+                    <div class="product-actions">
+                        <button id="btn-acao-3">Calcular Total</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart">
+                <h3>Resultado da API:</h3>
+                <pre id="api-result"></pre>
+                <p id="api-message" class="message"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="painelAdm.js"></script>
+</body>
+</html>
