@@ -45,7 +45,7 @@ class AdmController{
                     COUNT(v.idVenda) AS total_vendas,
                     SUM(v.valorTotal) AS soma_total
                     FROM Cliente c
-                    LEFT JOIN Venda v ON v.idCliente = c.idCliente
+                    JOIN Venda v ON v.idCliente = c.idCliente
                     GROUP BY c.idCliente, c.nome;`
         const resultado = await client.query(sql);
         const resposta  = resultado.rows;
