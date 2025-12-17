@@ -1,4 +1,4 @@
-# Trabalho-Banco-de-Dados
+# Visualização Web do Banco SQL
 
 🚀 Guia de Início Rápido: Rodando o Projeto Localmente
 Este guia passo a passo ajudará você a configurar e iniciar o projeto em sua máquina local para fins de desenvolvimento ou teste.
